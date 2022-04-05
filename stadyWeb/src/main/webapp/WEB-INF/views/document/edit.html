@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Edit document</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            p {
+                padding: 10px;
+            }
+
+            #left {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 20%;
+            }
+
+            #right {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 80%;
+            }
+        </style>
+
+    </head>
+<body>
+<body>
+<div id="left">
+    <strong><p>Background information</p></strong>
+    <p><a href="/organization">Organizational structure</a></p>
+    <p><a href="/worker">All workers</a></p>
+    <strong><p>Document</p></strong>
+    <p><a href="/document">All documents</a></p>
+    <p><a href="/document">My documents</a></p>
+    <p><a href="/position">Documents to me</a></p>
+
+</div>
+
+<div id="right">
+
+    <br>
+    <form th:method="POST" th:action="@{/document/{id} (id=${document.getId()})}" th:object="${document}">
+        <label for="object">Name Document: </label>
+        <input type="text" th:field="*{object}" id="object"/>
+        <div style="color:red" th:if="${#fields.hasErrors('object')}" th:errors="*{object}">Name Error</div>
+        <br/>
+
+        <label for="dayStart">Day Start Document: </label>
+        <input type="date" th:field="*{dayStart}" id="dayStart"/>
+        <div style="color:red" th:if="${#fields.hasErrors('dayStart')}" th:errors="*{dayStart}">Name Error</div>
+        <br/>
+
+        <label for="dayEnd">Day End Document: </label>
+        <input type="date" th:field="*{dayEnd}" id="dayEnd"/>
+        <br/>
+
+        <a>Status: </a>
+        <a th:text="${document.getStatus()}">Name Document</a>
+        <br/>
+
+        <label for="text">Text: </label>
+        <input type="text" th:field="*{text}" id="text"/>
+        <div style="color:red" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Name Error</div>
+        <br/>
+        <!--        <label for="executor">Executor: </label>-->
+        <!--        <input type="text" th:field="*{executor}" id="executor"/>-->
+        <br/>
+        <input type="submit" value="Create!"/><input type="submit" value="Error"/><input type="submit" value="run"/>
+    </form>
+
+    <form th:method="POST" th:action="@{/document/del/{id}(id=${document.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
+</div>
+
+
+</body>
+</html>

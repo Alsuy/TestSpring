@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Identification</title>
+</head>
+
+<body>
+
+<p>Hello</p>
+<br>
+<form th:method="POST" th:action="@{/worker/input}" th:object="${worker}">
+    <select>
+        <div th:each="worker : ${worker}">
+        <option><a th:text="${worker.getName()}">user</a>
+
+        </option>
+        </div>
+    </select>
+    <input type="submit" value="Identification"/>
+</form>
+</body>
+
+</html>
